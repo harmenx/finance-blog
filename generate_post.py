@@ -3,6 +3,9 @@ import sys
 import datetime
 import requests
 import re
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def generate_post_content(topic, poe_api_key):
     prompt = f"""
