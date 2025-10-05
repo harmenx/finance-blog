@@ -47,21 +47,41 @@ a:hover {
 }
 
 /* Post list */
-.post-list li {
-    margin-bottom: 40px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #333;
+.post-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    list-style: none;
+    padding: 0;
 }
 
-.post-list h3 a {
+.post-card {
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    padding: 20px;
+    transition: transform 0.3s ease;
+    border: 1px solid #333;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    border-color: #4dabf7;
+}
+
+.post-card h3 a {
     color: #ffffff;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 500;
 }
 
-.post-list .post-meta {
+.post-card .post-meta {
     color: #bbbbbb;
     font-size: 0.9rem;
+}
+
+.post-card .post-excerpt {
+    margin-top: 10px;
+    color: #e0e0e0;
 }
 
 /* Post */
@@ -94,4 +114,24 @@ footer {
     text-align: center;
     color: #bbbbbb;
     font-size: 0.9rem;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 50px 20px;
+    margin-bottom: 40px;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: #bbbbbb;
 }
