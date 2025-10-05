@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
+.    permissions:
       contents: write
     env:
       POE_API_KEY: ${{ secrets.POE_API_KEY }}
