@@ -24,13 +24,16 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Generate Crypto Post
-      run: python generate_post.py "Understanding Bitcoin Halving"
+      run: |
+        python generate_post.py "Understanding Bitcoin Halving"
 
     - name: Generate Finance Post
-      run: python generate_post.py "Personal Finance Basics: Budgeting and Saving"
+      run: |
+        python generate_post.py "Personal Finance Basics: Budgeting and Saving"
 
     - name: Generate Making Money Post
-      run: python generate_post.py "Side Hustles You Can Start Today"
+      run: |
+        python generate_post.py "Side Hustles You Can Start Today"
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v1
@@ -45,7 +48,7 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}/crypto-finance-education
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
