@@ -4,42 +4,57 @@ This project sets up an automated blog for generating high-value, SEO-friendly c
 
 ## Features
 
+*   **Modern & Responsive Design:** A clean, dark-themed, and mobile-friendly design that looks great on all devices.
 *   **Automated Content Generation:** Generates blog posts using the Poe API based on predefined topics and structures.
 *   **SEO-Friendly:** Content is designed to be SEO-optimized with catchy titles, descriptions, categories, and tags.
 *   **Jekyll Integration:** Generated posts are formatted as Jekyll Markdown files with appropriate front matter.
 *   **GitHub Pages Deployment:** Automatically builds and deploys the blog to GitHub Pages via GitHub Actions.
 *   **Daily Posting:** Configured to generate 1-2 new posts daily.
 
-## Setup
+## Local Development
 
-### 1. Poe API Key
+To set up the blog for local development, follow these steps:
 
-To use this automation, you'll need a Poe API key.
-
-*   **Local Development:** Create a `.env` file in the root of this project and add your Poe API key:
-
-    ```
-    POE_API_KEY=YOUR_POE_API_KEY_HERE
-    ```
-
-    **Remember to replace `YOUR_POE_API_KEY_HERE` with your actual Poe API key.** This `.env` file is already added to `.gitignore` to prevent accidental commits.
-
-*   **GitHub Actions:** Add your Poe API key as a GitHub Secret named `POE_API_KEY` in your repository settings:
-    1.  Go to your repository on GitHub.
-    2.  Click on "Settings".
-    3.  In the left sidebar, click on "Secrets and variables" > "Actions".
-    4.  Click on "New repository secret".
-    5.  For "Name", enter `POE_API_KEY`.
-    6.  For "Secret", paste your actual Poe API key.
-    7.  Click "Add secret".
-
-### 2. Install Dependencies
-
-Ensure you have Python installed. Then, install the required Python libraries:
+### 1. Clone the Repository
 
 ```bash
-pip install -r requirements.txt
+git clone https://github.com/your-username/crypto-finance-education-blog.git
+cd crypto-finance-education-blog
 ```
+
+### 2. Set Up Poe API Key
+
+Create a `.env` file in the root of the project and add your Poe API key:
+
+```
+POE_API_KEY=YOUR_POE_API_KEY_HERE
+```
+
+**Remember to replace `YOUR_POE_API_KEY_HERE` with your actual Poe API key.**
+
+### 3. Install Dependencies
+
+*   **Python:** Install the required Python libraries:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+*   **Jekyll:** Install Jekyll and the bundler gem:
+
+    ```bash
+    gem install bundler jekyll
+    ```
+
+### 4. Run the Jekyll Server
+
+Start the Jekyll server to view the blog locally:
+
+```bash
+bundle exec jekyll serve
+```
+
+The blog will be available at `http://localhost:4000`.
 
 ## Usage
 
@@ -53,26 +68,26 @@ python generate_post.py "Your Desired Blog Post Topic"
 
 This will create a new Markdown file in the `_posts` directory.
 
-### Automated Workflow (GitHub Actions)
+### Automated Workflows (GitHub Actions)
 
-The `.github/workflows/crypto_finance_education.yml` file configures a GitHub Actions workflow that runs daily at 10:00 UTC. This workflow will:
+This project uses two separate GitHub Actions workflows:
 
-1.  Set up a Python environment.
-2.  Install dependencies from `requirements.txt`.
-3.  Generate multiple blog posts using `generate_post.py` with predefined topics.
-4.  Deploy the generated posts to your GitHub Pages site.
+*   **`generate-post.yml`:** This workflow runs on a schedule (daily at 10:00 UTC) or can be triggered manually. It generates new blog posts using the `generate_post.py` script and commits them to the repository.
+*   **`build.yml`:** This workflow is triggered on every push to the `main` branch. It builds the Jekyll site and deploys it to GitHub Pages.
 
-To trigger a manual run of the workflow for testing:
+To trigger a manual run of the `generate-post` workflow:
 
 1.  Go to your repository on GitHub.
 2.  Click on the "Actions" tab.
-3.  Select the "Crypto Finance Education" workflow.
+3.  Select the "Generate New Posts" workflow.
 4.  Click "Run workflow" and then "Run workflow" again to confirm.
 
 ## Project Structure
 
 *   `_posts/`: Contains the generated Jekyll blog posts.
-*   `.github/workflows/crypto_finance_education.yml`: GitHub Actions workflow for automation and deployment.
+*   `.github/workflows/`: Contains the GitHub Actions workflows.
+    *   `generate-post.yml`: Workflow for generating new posts.
+    *   `build.yml`: Workflow for building and deploying the site.
 *   `generate_post.py`: Python script for generating blog post content via Poe.
 *   `requirements.txt`: Python dependencies.
 *   `.env`: Local environment variables (ignored by Git).
